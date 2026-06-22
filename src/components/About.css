@@ -1,0 +1,129 @@
+.about {
+  background: var(--color-gray-light);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about__label {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.about__text {
+  color: var(--color-gray);
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.about__content .btn {
+  margin-top: 0.5rem;
+}
+
+.about__image-wrap {
+  position: relative;
+}
+
+.about__image {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(to top, rgba(26, 31, 46, 0.3), transparent),
+    url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80') center / cover no-repeat;
+  box-shadow: var(--shadow-lg);
+}
+
+.about__experience {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -1.5rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.about__experience strong {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.about__experience span {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.about__features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.about__feature {
+  background: var(--color-white);
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.about__feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.about__feature-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.about__feature h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.about__feature p {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .about__features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about__experience {
+    left: 1rem;
+    bottom: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__features {
+    grid-template-columns: 1fr;
+  }
+}
