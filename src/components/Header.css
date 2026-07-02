@@ -5,20 +5,38 @@
   right: 0;
   z-index: 100;
   height: var(--header-height);
-  transition: background 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
 }
 
-.header--scrolled {
+.header--scrolled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-sm);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.header--menu-open {
+  background: var(--color-white);
+}
+
+.header--menu-open::before {
+  display: none;
+}
+
+.header .container {
+  width: min(100% - 2rem, var(--container));
 }
 
 .header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 100%;
+  gap: 1rem;
 }
 
 .header__logo {
@@ -27,6 +45,9 @@
   gap: 0.75rem;
   font-weight: 800;
   font-size: 1.25rem;
+  margin-right: auto;
+  padding-right: 3rem;
+  flex-shrink: 0;
 }
 
 .header__logo-icon {
@@ -47,30 +68,53 @@
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .header__list {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .header__list a {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--color-dark-soft);
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
-.header__list a:hover {
+.header__list a:hover,
+.header__list a.active {
   color: var(--color-primary);
+}
+
+.header__list a.active {
+  font-weight: 600;
 }
 
 .header__contacts {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.header__cta {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
 }
 
 .header__phone {
@@ -147,11 +191,14 @@
   .header__nav {
     position: fixed;
     inset: var(--header-height) 0 0 0;
+    z-index: 101;
     flex-direction: column;
     justify-content: flex-start;
     padding: 2rem;
     gap: 2rem;
-    background: var(--color-white);
+    background: #ffffff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: translateX(100%);
     transition: transform 0.3s ease;
   }
@@ -168,5 +215,15 @@
 
   .header__list a {
     font-size: 1.25rem;
+  }
+
+  .header__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .header__cta {
+    text-align: center;
   }
 }

@@ -17,7 +17,24 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'format2025'
 
 const adminTokens = new Set()
 
-app.use(cors())
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://format-studio.ru',
+  'https://www.format-studio.ru',
+  'https://admin.format-studio.ru',
+]
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(null, false)
+    }
+  },
+  credentials: true,
+}))
 app.use(express.json())
 
 function authAdmin(req, res, next) {

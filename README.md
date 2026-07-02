@@ -40,8 +40,24 @@ npm run start
 | PATCH | `/api/leads/:id` | Изменить статус (`new` / `done`) |
 | DELETE | `/api/leads/:id` | Удалить заявку |
 
+## WordPress (headless CMS)
+
+Контент сайта можно редактировать в WordPress через плагин `wordpress/format-studio-cms`.
+
+1. Установите плагин на WordPress (см. `wordpress/README.md`)
+2. Создайте `.env` из `.env.example`:
+
+```env
+VITE_WP_API_URL=https://ваш-wordpress.ru/wp-json
+```
+
+3. Перезапустите `npm run dev`
+
+Без WordPress сайт работает на встроенных текстах. Заявки с формы — в Node.js API (`/admin`).
+
 ## Технологии
 
 - React 19 + React Router
 - Vite 8
 - Express + JSON-файл для хранения заявок
+- WordPress REST API (опционально)

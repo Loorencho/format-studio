@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import { apiUrl } from '../config/api'
 import './AdminPage.css'
 
 const TOKEN_KEY = 'format_admin_token'
@@ -27,7 +28,7 @@ export default function AdminPage() {
     setLoading(true)
     setFetchError('')
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch(apiUrl('/api/leads'), {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       if (res.status === 401) {
@@ -52,7 +53,7 @@ export default function AdminPage() {
     e.preventDefault()
     setLoginError('')
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await fetch(apiUrl('/api/admin/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
@@ -78,7 +79,7 @@ export default function AdminPage() {
 
   const toggleStatus = async (lead) => {
     const newStatus = lead.status === 'new' ? 'done' : 'new'
-    const res = await fetch(`/api/leads/${lead.id}`, {
+    const res = await fetch(apiUrl(`/api/leads/${lead.id}`), {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ export default function AdminPage() {
 
   const handleDelete = async () => {
     if (!deleteTarget) return
-    const res = await fetch(`/api/leads/${deleteTarget.id}`, {
+    const res = await fetch(apiUrl(`/api/leads/${deleteTarget.id}`), {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     })

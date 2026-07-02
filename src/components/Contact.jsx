@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { useContent } from '../context/ContentProvider'
+import { apiUrl } from '../config/api'
 import './Contact.css'
 
 export default function Contact() {
+  const { content } = useContent()
+  const contacts = content.settings.contacts
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -19,7 +23,7 @@ export default function Contact() {
     }
 
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch(apiUrl('/api/leads'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -52,19 +56,19 @@ export default function Contact() {
             <ul className="contact__details">
               <li>
                 <strong>Телефон</strong>
-                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                <a href={`tel:${contacts.phone_raw}`}>{contacts.phone}</a>
               </li>
               <li>
                 <strong>Email</strong>
-                <a href="mailto:hello@format-studio.ru">hello@format-studio.ru</a>
+                <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
               </li>
               <li>
                 <strong>Шоурум</strong>
-                <span>г. Москва, ул. Мастеров, 8, офис 12</span>
+                <span>{contacts.address}</span>
               </li>
               <li>
                 <strong>Режим работы</strong>
-                <span>Пн–Сб: 10:00–20:00</span>
+                <span>{contacts.hours}</span>
               </li>
             </ul>
           </div>

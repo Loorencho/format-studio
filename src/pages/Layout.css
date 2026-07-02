@@ -1,0 +1,11 @@
+.page-main {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.page-main > .hero {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.page-main > .section:first-child:not(.hero) {
+  padding-top: calc(var(--header-height) + 3rem);
+}

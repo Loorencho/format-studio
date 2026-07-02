@@ -11,11 +11,21 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.deploy
 server/data/
+
+# Deploy artifacts (local build output)
+xristou7-site-flat/
+xristou7-site/
+format-studio-main-only/
+deploy-package/
+*.zip
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/tasks.json
 .idea
 .DS_Store
 *.suo

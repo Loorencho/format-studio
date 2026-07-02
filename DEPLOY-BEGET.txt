@@ -1,0 +1,44 @@
+Автодеплой на Beget
+===================
+
+Один раз настроить
+------------------
+1. Beget → FTP-аккаунты → «Добавить FTP-аккаунт»
+2. Привязать к сайту: xristou7.beget.tech → public_html
+   (НЕ cms / WordPress!)
+3. Сохранить логин и пароль
+
+4. В папке проекта:
+   copy .env.deploy.example .env.deploy
+
+5. Заполнить .env.deploy:
+   BEGET_FTP_HOST=xristou7.beget.tech
+   BEGET_FTP_USER=ваш_логин
+   BEGET_FTP_PASSWORD=ваш_пароль
+   BEGET_FTP_REMOTE_PATH=/
+
+6. Установить зависимости (один раз):
+   npm install
+
+Команды
+-------
+npm run deploy
+  → собрать сайт и загрузить на Beget
+
+npm run deploy:watch
+  → следить за src/ и после каждой правки автоматически
+     пересобирать и заливать на сервер
+
+npm run build:beget
+  → только собрать xristou7-site-flat/ (без загрузки)
+
+Проверка FTP
+------------
+После deploy откройте:
+http://xristou7.beget.tech/
+Ctrl+F5 — обновить без кэша
+
+Важно
+-----
+- Старый аккаунт xristou7_ftp ведёт в WordPress — для React нужен новый FTP.
+- Файл .env.deploy хранит пароль локально, в git не попадает.
