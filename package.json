@@ -12,6 +12,7 @@
     "build:beget": "node scripts/build-beget-flat.mjs",
     "deploy": "node scripts/deploy-beget.mjs",
     "deploy:watch": "node scripts/watch-deploy.mjs",
+    "fix:cms": "node scripts/fix-cms-beget.mjs",
     "start": "node server/index.js",
     "lint": "eslint .",
     "preview": "vite preview"

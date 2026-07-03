@@ -1,0 +1,34 @@
+Исправление /cms/ (белый экран и 404 API)
+==========================================
+
+ПРИЧИНА
+-------
+В папке cms/ лежит файл index.html с PHP-кодом WordPress.
+Сервер открывает его вместо index.php → белый экран, REST API не работает.
+
+ИСПРАВЛЕНИЕ (File Manager Beget, 3 мин)
+---------------------------------------
+1. xristou7.beget.tech → public_html → cms
+
+2. УДАЛИТЕ файл index.html  ← главное!
+
+3. Загрузите .htaccess из:
+   stroitelnaya-kompaniya/wordpress/cms.htaccess
+   (положить в cms/.htaccess)
+
+4. Откройте cms/wp-config.php, перед строкой
+   /* That's all, stop editing! */ добавьте:
+
+   define('WP_HOME', 'http://xristou7.beget.tech/cms');
+   define('WP_SITEURL', 'http://xristou7.beget.tech/cms');
+
+5. Войдите: http://xristou7.beget.tech/cms/wp-admin/
+   Плагины → Format Studio CMS → Активировать
+
+ПРОВЕРКА
+--------
+http://xristou7.beget.tech/cms/           → сайт WordPress (не белый экран)
+http://xristou7.beget.tech/cms/wp-json/format-studio/v1/content → JSON
+
+Авто-исправление по FTP (если настроен xristou7_beget в .env.deploy):
+  npm run fix:cms
